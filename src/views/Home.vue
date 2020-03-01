@@ -4,16 +4,18 @@
     <div class="home">
         <m-head></m-head>
         <m-left-list></m-left-list>
+        <SignIn></SignIn>
     </div>
 </template>
 
 <script>
     import MHead from "../components/mHead";
     import MLeftList from "../components/mLeftList";
+    import SignIn from "../components/page/SignIn";
 
     export default {
         name: 'Home',
-        components: {MLeftList, MHead}
+        components: {SignIn, MLeftList, MHead}
     }
 </script>
 
