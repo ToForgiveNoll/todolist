@@ -1,13 +1,18 @@
+<!--这个组件实现头部-->
+
 <template>
     <div class="mHead">
         <p class="title">ToDoList</p>
-        <div class="el-icon-s-tools"></div>
+        <div class="el-icon-s-tools" @click="NewsOpen('设置')"></div>
 
         <el-badge :value="el_badge_value" :max="9" class="item" :hidden="el_badge_hidden">
-            <div class="el-icon-message-solid"></div>
+            <div class="el-icon-message-solid" @click="NewsOpen('消息')"></div>
         </el-badge>
 
-        <el-avatar :size="30" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+        <div @click="NewsOpen('头像')" class="avatar">
+            <el-avatar :size="30"
+                       src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+        </div>
 
     </div>
 </template>
@@ -21,7 +26,12 @@
                 el_badge_value: 0
             }
         },
-        methods: {},
+        methods: {
+            // 消息提示
+            NewsOpen(Spring) {
+                this.$message(Spring + '功能暂未开放');
+            }
+        },
         mounted() {
             // 如果没有通知则关闭提示
             if (this.el_badge_value === 0) {
@@ -36,7 +46,7 @@
 
     .mHead {
         width: 100%;
-        background-color: #ff715a;
+        background-color: #5eb0ff;
         height: 60px;
 
         .title {
@@ -55,7 +65,7 @@
             line-height: 60px;
         }
 
-        .el-icon-s-tools:before{
+        .el-icon-s-tools:before {
             font-size: 20px;
         }
 
@@ -63,7 +73,7 @@
             color: white;
         }
 
-        .el-icon-message-solid:before{
+        .el-icon-message-solid:before {
             font-size: 20px;
         }
 
@@ -74,7 +84,7 @@
             float: right;
         }
 
-        .el-avatar {
+        .avatar {
             float: right;
             margin-top: 15px;
             margin-right: 20px;
