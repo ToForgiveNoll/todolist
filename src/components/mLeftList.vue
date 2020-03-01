@@ -55,8 +55,6 @@
 </script>
 
 <style lang="scss">
-    @import "../assets/scss/main";
-
     .mLeftList {
         float: left;
         width: 250px;

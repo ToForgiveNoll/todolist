@@ -42,8 +42,6 @@
 </script>
 
 <style lang="scss">
-    @import "../../assets/scss/main";
-
     .SignIn {
         width: calc(100% - 250px);
         height: auto;
@@ -73,7 +71,7 @@
                 display: inline-block;
                 width: 150px;
                 margin-right: 20px;
-                background-color: #5eb0ff;
+                background-image: linear-gradient(270deg, #5eb0ff 0%, #54d5ff 100%);
                 p{
                     color: white;
                 }

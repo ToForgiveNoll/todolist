@@ -42,8 +42,6 @@
 </script>
 
 <style lang="scss">
-    @import "../assets/scss/main";
-
     .mHead {
         width: 100%;
         background-color: #5eb0ff;
