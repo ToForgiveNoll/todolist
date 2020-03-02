@@ -2,17 +2,23 @@
 
 <template>
     <div class="mHead">
-        <p class="title">ToDoList</p>
-        <div class="el-icon-s-tools" @click="NewsOpen('设置')"></div>
+        <p class="title">待办事项清单</p>
+        <el-tooltip class="item" effect="dark" content="设置" placement="bottom">
+            <div class="el-icon-s-tools" @click="NewsOpen('设置')"></div>
+        </el-tooltip>
 
-        <el-badge :value="el_badge_value" :max="9" class="item" :hidden="el_badge_hidden">
-            <div class="el-icon-message-solid" @click="NewsOpen('消息')"></div>
-        </el-badge>
+        <el-tooltip class="item" effect="dark" content="消息" placement="bottom">
+            <el-badge :value="el_badge_value" :max="9" class="item" :hidden="el_badge_hidden">
+                <div class="el-icon-message-solid" @click="NewsOpen('消息')"></div>
+            </el-badge>
+        </el-tooltip>
 
-        <div @click="NewsOpen('头像')" class="avatar">
-            <el-avatar :size="30"
-                       src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-        </div>
+        <el-tooltip class="item" effect="dark" content="头像" placement="bottom">
+            <div @click="NewsOpen('头像')" class="avatar">
+                <el-avatar :size="30"
+                           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+            </div>
+        </el-tooltip>
 
     </div>
 </template>
@@ -60,7 +66,7 @@
             float: right;
             color: white;
             margin-right: 20px;
-            line-height: 60px;
+            margin-top: 20px;
         }
 
         .el-icon-s-tools:before {

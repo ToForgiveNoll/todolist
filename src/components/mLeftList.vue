@@ -33,7 +33,9 @@
 
         <div class="label">
             <p>Beta 0.0.1</p>
-            <p class="github" @click="ToGithub"></p>
+            <el-tooltip class="item" effect="dark" content="访问github" placement="top">
+                <p class="github" @click="ToGithub"></p>
+            </el-tooltip>
         </div>
     </div>
 </template>
