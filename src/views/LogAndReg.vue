@@ -85,7 +85,6 @@
 
                     this.$router.push({'name': 'Home'});// 跳转首页
                 }
-                console.log(data);
             },
             message() {
                 this.$message("功能暂未开放");
@@ -101,7 +100,6 @@
                 json["keyChain"] = keyChain;
                 ajax(this.mountedCallback, "data=" + JSON.stringify(json));
             }
-            console.log(keyChain)
         }
     }
 </script>
