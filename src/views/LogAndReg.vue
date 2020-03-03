@@ -2,22 +2,22 @@
 
 <template>
     <div class="LogAndReg">
-        <p class="Watermark">图片均来源百度 如果侵犯了您的利益 请联系我下架</p>
+        <p class="Watermark">图片均来源网络 如果侵犯了您的利益 请联系我下架</p>
 
         <div class="card">
             <el-tooltip class="item" effect="dark" content="第一次登录视为注册" placement="bottom">
                 <p class="title">注册与登录</p>
             </el-tooltip>
 
-            <el-tooltip class="item" effect="dark" content="昵称最多支持12个字符 不可输入特殊符号" placement="right">
-                <input placeholder="昵称"/>
+            <el-tooltip class="item" effect="dark" content="请输入你的邮箱 后期会对邮箱可用性进行校对" placement="right">
+                <input ref="email" placeholder="邮箱"/>
             </el-tooltip>
 
             <el-tooltip class="item" effect="dark" content="密码为8-16位" placement="right">
-                <input type="password" placeholder="密码"/>
+                <input ref="password" type="password" placeholder="密码"/>
             </el-tooltip>
 
-            <button>提交</button>
+            <button @click="submit">提交</button>
 
             <p class="forget" @click="message">忘记密码</p>
         </div>
@@ -25,13 +25,39 @@
 </template>
 
 <script>
+    import {ajax} from "../units/ajax";
+
     export default {
         name: "LogAndReg",
+        data() {
+            return {}
+        },
         methods: {
-            data() {
-                return {
-
+            // 提交表单
+            submit() {
+                let email = this.$refs.email.value;
+                let password = this.$refs.password.value;
+                // 校验账号密码
+                if (email != null && email !== "") {
+                    if (password != null && password !== "") {
+                        // 发送请求
+                        let json = {};
+                        json["className"] = "com.Alan.todolist.LogAndReg";
+                        json["methodName"] = "LogAndRegAchieve";
+                        json["email"] = email;
+                        json["password"] = password;
+                        console.log(JSON.stringify(json));
+                        ajax(this.submitCallback, "data=" + JSON.stringify(json));
+                    } else {
+                        alert("请输入密码");
+                    }
+                } else {
+                    alert("请输入邮箱");
                 }
+            },
+            // 提交表单回调
+            submitCallback(data) {
+                console.log(data);
             },
             message() {
                 this.$message("功能暂未开放");
@@ -107,7 +133,7 @@
                 color: #eee;
             }
 
-            button:hover{
+            button:hover {
                 background-color: #eee;
                 color: #999;
             }
