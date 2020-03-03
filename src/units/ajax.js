@@ -16,10 +16,12 @@ function ajax(fun, post = "", url = "../index.jsp") {
     var xmlhttp;
 
     // // 判断线上版本和开发版本
-    if (window.location.port !== 8080) {
+    if (window.location.port === '8080') {
         console.log("本地测试");
         url = "http://localhost:8081/ToDoList_war_exploded/";
     }
+
+    console.log(window.location.port);
 
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
