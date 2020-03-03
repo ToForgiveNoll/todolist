@@ -21,8 +21,6 @@ function ajax(fun, post = "", url = "../index.jsp") {
         url = "http://localhost:8081/ToDoList_war_exploded/";
     }
 
-    console.log(window.location.port);
-
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
     } else { // code for IE6, IE5

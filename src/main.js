@@ -13,5 +13,16 @@ new Vue({
     store,
     render: function (h) {
         return h(App)
+    },
+    directives: {
+        // 自定义一个点击其他区域销毁当前元素的指令
+        focus: {
+            // 指令的定义
+            inserted: function (el) {
+                el.focus()
+            }
+        }
     }
 }).$mount('#app');
+
+

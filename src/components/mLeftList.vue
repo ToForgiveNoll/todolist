@@ -3,9 +3,14 @@
 <template>
     <div class="mLeftList">
         <div class="topList">
-            <div>
+            <div @click="type('UseCase')">
                 <div class="el-icon-date"></div>
-                <p>签到</p>
+                <p>使用情况统计</p>
+            </div>
+            <div @click="type('Team')">
+                <div class="el-icon-user"></div>
+                <p>团队</p>
+                <p>0</p>
             </div>
             <div @click="NewsOpen('收件箱')">
                 <div class="el-icon-news"></div>
@@ -51,6 +56,9 @@
             // 消息提示
             NewsOpen(Spring) {
                 this.$message(Spring + '功能暂未开放');
+            },
+            type(data) {
+                this.$emit('event', data);
             }
         }
     }
@@ -110,7 +118,7 @@
             }
         }
 
-        .dividingLine{
+        .dividingLine {
             margin-left: 40px;
             width: 210px;
             height: 1px;

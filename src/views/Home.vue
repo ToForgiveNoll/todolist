@@ -2,24 +2,27 @@
 
 <template>
     <div class="home" v-loading="loading">
-        <m-head></m-head>
-        <m-left-list></m-left-list>
-        <SignIn></SignIn>
+        <m-head @event="change"></m-head>
+        <m-left-list @event="change"></m-left-list>
+        <UseCase v-if="page === 'UseCase'" @event="change"></UseCase>
+        <Team v-if="page === 'Team'" @event="change"></Team>
     </div>
 </template>
 
 <script>
     import MHead from "../components/mHead";
     import MLeftList from "../components/mLeftList";
-    import SignIn from "../components/page/SignIn";
+    import UseCase from "../components/page/UseCase";
     import {keyChainCheck} from "../units/keyChainCheck";
+    import Team from "../components/page/Team";
 
     export default {
         name: 'Home',
-        components: {SignIn, MLeftList, MHead},
+        components: {Team, UseCase, MLeftList, MHead},
         data() {
             return {
-                loading: true
+                loading: true,
+                page: "UseCase"
             }
         },
         methods: {
@@ -34,6 +37,10 @@
                         type: 'success'
                     });
                 }
+            },
+            // 控制页面跳转
+            change(data) {
+                this.page = data;
             }
         },
         mounted() {

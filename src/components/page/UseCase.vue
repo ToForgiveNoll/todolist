@@ -1,7 +1,7 @@
-<!--这个组件实现签到页面-->
+<!--这个组件实现使用情况统计页面-->
 
 <template>
-    <div class="SignIn">
+    <div class="UseCase">
 
         <div class="outerFrame">
 
@@ -12,22 +12,22 @@
                 <p class="titleSmall">使用次数</p>
 
                 <el-card class="box-card">
-                    <p>签到天数</p>
-                    <p>20天</p>
+                    <p>使用天数</p>
+                    <p><span>0</span>天</p>
                 </el-card>
 
                 <el-card class="box-card">
-                    <p>连续签到</p>
-                    <p>15天</p>
+                    <p>连续使用</p>
+                    <p><span>0</span>天</p>
                 </el-card>
 
                 <el-card class="box-card">
-                    <p>距离最后签到</p>
-                    <p>0天</p>
+                    <p>最后使用</p>
+                    <p><span>0</span>天</p>
                 </el-card>
 
                 <el-tooltip class="item" effect="dark" content="开发中.." placement="left">
-                    <p class="titleSmall">整体签到分析</p>
+                    <p class="titleSmall">整体分析</p>
                 </el-tooltip>
 
                 <el-tooltip class="item" effect="dark" content="开发中.." placement="left">
@@ -43,12 +43,20 @@
 
 <script>
     export default {
-        name: "SignIn"
+        name: "UseCase",
+        data() {
+            return {
+                day: []
+            }
+        },
+        methods: {},
+        mounted() {
+        }
     }
 </script>
 
 <style lang="scss">
-    .SignIn {
+    .UseCase {
         width: calc(100% - 250px);
         height: auto;
         float: left;
@@ -81,6 +89,7 @@
 
                 p {
                     color: white;
+                    font-size: 14px;
                 }
 
                 p:nth-child(1) {
@@ -88,9 +97,12 @@
                 }
 
                 p:nth-child(2) {
-                    font-size: 20px;
                     margin-top: 10px;
-                    font-weight: 600;
+
+                    & > span {
+                        font-size: 20px;
+                        font-weight: 900;
+                    }
                 }
             }
         }
