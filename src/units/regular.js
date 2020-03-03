@@ -9,8 +9,6 @@
  *
  * @param {String} string 要检查的字符串
  * @return {Boolean} 如果存在则返回true，否则返回false
- * @author Alan
- * @email 122417203@qq.com
  */
 function isSpecialCharacters(string) {
     var reg = /[^\u4e00-\u9fa5_a-zA-Z0-9]+$/;
@@ -22,8 +20,6 @@ function isSpecialCharacters(string) {
  *
  * @param {String} string base64文本
  * @return {String} 转义后base64文本
- * @author Alan
- * @email 122417203@qq.com
  */
 function stringToPost(string) {
     // 转义回车
@@ -62,8 +58,6 @@ function br2Wrap(string) {
  * @param {String} filename 文件名(可带有路径)
  * @param {Boolean} isSpot 是否带点
  * @return {String} 后缀名
- * @author Alan
- * @email 122417203@qq.com
  */
 function getSuffixName(filename, isSpot = true) {
     if (isSpot) {
@@ -80,9 +74,7 @@ function getSuffixName(filename, isSpot = true) {
  * 判断文本是否是纯数字
  *
  * @param string 文本
- * @returns {boolean} 如果存在则返回true，否则返回false
- * @author Alan
- * @email 122417203@qq.com
+ * @returns {boolean} 如果存在则返回true，否则返回falsem
  */
 function isDigital(string) {
     var reg = /^[0-9]*$/;
@@ -95,8 +87,6 @@ function isDigital(string) {
  * @param {boolean} text 是否返回匹配文本
  * @param {string} string 文本
  * @return {Array}|{boolean} 匹配的字符串数组|是否匹配到
- * @author Alan
- * @email 122417203@qq.com
  */
 function isDate(string, text = false) {
     var reg = /^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}/;
@@ -111,8 +101,6 @@ function isDate(string, text = false) {
  *
  * @param string
  * @returns {boolean} 布尔值 空为真
- * @author Alan
- * @email 122417203@qq.com
  */
 function isNull(string) {
     return string == null || string === "";
@@ -123,8 +111,6 @@ function isNull(string) {
  *
  * @param string
  * @returns {boolean}
- * @author Alan
- * @email 122417203@qq.com
  */
 function isCn(string) {
     var reg = /[\u4E00-\u9FA5]+$/;

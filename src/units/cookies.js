@@ -4,14 +4,24 @@
  * 创建时间：2019-10-10
  */
 
-//写cookies，一个小时过期
+/**
+ * 写cookies一天过期
+ *
+ * @param name
+ * @param value
+ */
 function setCookie(name, value) {
     var exp = new Date();
-    exp.setTime(exp.getTime() + 60 * 60 * 1000);
+    exp.setTime(exp.getTime() + 60 * 60 * 1000 * 24);
     document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
 }
 
-//读取cookies
+/**
+ * 读取cookies
+ *
+ * @param name
+ * @returns {string|null}
+ */
 function getCookie(name) {
     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
 
@@ -22,7 +32,11 @@ function getCookie(name) {
         return null;
 }
 
-//删除cookies
+/**
+ * 删除cookise
+ *
+ * @param name
+ */
 function delCookie(name) {
     var exp = new Date();
     exp.setTime(exp.getTime() - 60 * 60 * 1000);
@@ -30,7 +44,6 @@ function delCookie(name) {
     if (cval != null)
         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + ";path=/";
 }
-
 
 export {
     setCookie,

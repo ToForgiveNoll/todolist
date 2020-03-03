@@ -11,8 +11,6 @@
  * @param {Function} fun 回调函数
  * @param {String} post post传值
  * @return {String} 调用回调函数传回后端数据
- * @author Alan
- * @email 122417203@qq.com
  */
 function ajax(fun, post = "",url="http://localhost:8080/ToDoList_war_exploded/") {
     var xmlhttp;

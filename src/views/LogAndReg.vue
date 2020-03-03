@@ -1,7 +1,7 @@
 <!--这个页面实现登录及注册-->
 
 <template>
-    <div class="LogAndReg">
+    <div class="LogAndReg" v-loading="loading">
         <p class="Watermark">图片均来源网络 如果侵犯了您的利益 请联系我下架</p>
 
         <div class="card">
@@ -26,11 +26,14 @@
 
 <script>
     import {ajax} from "../units/ajax";
+    import {getCookie, setCookie} from "../units/cookies";
 
     export default {
         name: "LogAndReg",
         data() {
-            return {}
+            return {
+                loading: true
+            }
         },
         methods: {
             // 提交表单
@@ -38,30 +41,67 @@
                 let email = this.$refs.email.value;
                 let password = this.$refs.password.value;
                 // 校验账号密码
-                if (email != null && email !== "") {
-                    if (password != null && password !== "") {
+                if (email.length < 36 && email.length > 8) {
+                    if (password.length < 16 && password.length > 8) {
+                        this.loading = true;
                         // 发送请求
                         let json = {};
                         json["className"] = "com.Alan.todolist.LogAndReg";
                         json["methodName"] = "LogAndRegAchieve";
                         json["email"] = email;
                         json["password"] = password;
-                        console.log(JSON.stringify(json));
                         ajax(this.submitCallback, "data=" + JSON.stringify(json));
                     } else {
-                        alert("请输入密码");
+                        this.$message("密码格式不正确");
                     }
                 } else {
-                    alert("请输入邮箱");
+                    this.$message("邮箱格式不正确");
                 }
             },
             // 提交表单回调
             submitCallback(data) {
+                this.loading = false;
+                // 判断处理状态
+                if (data !== '0') {
+                    this.$message({
+                        message: '登陆成功',
+                        type: 'success'
+                    });
+                    setCookie("keyChain", data);
+                    this.$router.push({'name': 'Home'});// 跳转首页
+                } else {
+                    this.$message.error("密码错误");
+                    this.$refs.password.value = '';
+                }
+            },
+            // 初始化回调
+            mountedCallback(data) {
+                this.loading = false;
+                if (data === "1") {
+                    this.$message({
+                        message: '欢迎回来',
+                        type: 'success'
+                    });
+
+                    this.$router.push({'name': 'Home'});// 跳转首页
+                }
                 console.log(data);
             },
             message() {
                 this.$message("功能暂未开放");
             }
+        },
+        mounted() {
+            let keyChain = getCookie("keyChain");
+            if (keyChain != null && keyChain !== "") {
+                // 发送请求
+                let json = {};
+                json["className"] = "com.Alan.todolist.LogAndReg";
+                json["methodName"] = "verificationKeyChain";
+                json["keyChain"] = keyChain;
+                ajax(this.mountedCallback, "data=" + JSON.stringify(json));
+            }
+            console.log(keyChain)
         }
     }
 </script>
