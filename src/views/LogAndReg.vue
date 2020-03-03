@@ -27,7 +27,7 @@
 <script>
     import {ajax} from "../units/ajax";
     import {getCookie, setCookie} from "../units/cookies";
-    import {keyChain} from "../units/keyChain";
+    import {keyChainCheck} from "../units/keyChainCheck";
 
     export default {
         name: "LogAndReg",
@@ -69,7 +69,7 @@
                         type: 'success'
                     });
                     setCookie("keyChain", data);
-                    this.$router.push({'name': 'Home'});// 跳转首页
+                    this.$router.push({'name': 'Home', params: {key: 1}});// 跳转首页
                 } else {
                     this.$message.error("密码错误");
                     this.$refs.password.value = '';
@@ -84,7 +84,7 @@
                         type: 'success'
                     });
 
-                    this.$router.push({'name': 'Home'});// 跳转首页
+                    this.$router.push({'name': 'Home', params: {key: 1}});// 跳转首页
                 }
             },
             message() {
@@ -92,7 +92,7 @@
             }
         },
         mounted() {
-            keyChain(this.mountedCallback);
+            keyChainCheck(this.mountedCallback); // 验证keyChain
         }
     }
 </script>

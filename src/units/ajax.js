@@ -12,12 +12,13 @@
  * @param {String} post post传值
  * @return {String} 调用回调函数传回后端数据
  */
-function ajax(fun, post = "", url = "http://localhost:8080/ToDoList_war_exploded/") {
+function ajax(fun, post = "", url = "../index.jsp") {
     var xmlhttp;
 
-    // 判断线上版本和开发版本
-    if (window.location.port === 80) {
-        url = "http://todolist.yxxa.xyz:8080/ToDoList/index.jsp";
+    // // 判断线上版本和开发版本
+    if (window.location.port !== 8080) {
+        console.log("本地测试");
+        url = "http://localhost:8081/ToDoList_war_exploded/";
     }
 
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari

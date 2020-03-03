@@ -11,18 +11,20 @@ import {ajax} from "./ajax";
  *
  * @param fun 回调函数
  */
-function keyChain(fun) {
+function keyChainCheck(fun) {
     let keyChain = getCookie("keyChain");
-    if (keyChain != null && keyChain !== "") {
+    if (keyChain != null) {
         // 发送请求
         let json = {};
         json["className"] = "com.Alan.todolist.LogAndReg";
         json["methodName"] = "verificationKeyChain";
         json["keyChain"] = keyChain;
         ajax(fun, "data=" + JSON.stringify(json));
+    } else {
+        fun("0"); // 返回失败
     }
 }
 
 export {
-    keyChain
+    keyChainCheck
 }
