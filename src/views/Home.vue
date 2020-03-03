@@ -6,6 +6,7 @@
         <m-left-list @event="change"></m-left-list>
         <UseCase v-if="page === 'UseCase'" @event="change"></UseCase>
         <Team v-if="page === 'Team'" @event="change"></Team>
+        <Reprint v-if="page === 'Reprint'" @event="change"></Reprint>
     </div>
 </template>
 
@@ -15,10 +16,11 @@
     import UseCase from "../components/page/UseCase";
     import {keyChainCheck} from "../units/keyChainCheck";
     import Team from "../components/page/Team";
+    import Reprint from "../components/page/Reprint";
 
     export default {
         name: 'Home',
-        components: {Team, UseCase, MLeftList, MHead},
+        components: {Reprint, Team, UseCase, MLeftList, MHead},
         data() {
             return {
                 loading: true,

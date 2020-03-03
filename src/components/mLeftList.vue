@@ -32,6 +32,11 @@
                 <p>本周</p>
                 <p>0</p>
             </div>
+            <div @click="type('Reprint')">
+                <div class="el-icon-warning-outline"></div>
+                <p>刷题</p>
+                <p>0</p>
+            </div>
         </div>
 
         <div class="dividingLine"></div>
