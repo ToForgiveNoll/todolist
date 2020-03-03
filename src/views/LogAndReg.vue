@@ -27,6 +27,7 @@
 <script>
     import {ajax} from "../units/ajax";
     import {getCookie, setCookie} from "../units/cookies";
+    import {keyChain} from "../units/keyChain";
 
     export default {
         name: "LogAndReg",
@@ -91,15 +92,7 @@
             }
         },
         mounted() {
-            let keyChain = getCookie("keyChain");
-            if (keyChain != null && keyChain !== "") {
-                // 发送请求
-                let json = {};
-                json["className"] = "com.Alan.todolist.LogAndReg";
-                json["methodName"] = "verificationKeyChain";
-                json["keyChain"] = keyChain;
-                ajax(this.mountedCallback, "data=" + JSON.stringify(json));
-            }
+            keyChain(this.mountedCallback);
         }
     }
 </script>
