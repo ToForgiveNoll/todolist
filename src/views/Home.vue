@@ -17,6 +17,7 @@
     import {keyChainCheck} from "../units/keyChainCheck";
     import Team from "../components/page/Team";
     import Reprint from "../components/page/Reprint";
+    import {setCookie} from "../units/cookies";
 
     export default {
         name: 'Home',
@@ -31,13 +32,15 @@
             // 初始化回调
             mountedCallback(data) {
                 this.loading = false;
-                if (data !== "1") {
+                if (data === "0") {
                     this.$router.push({'name': 'LogAndReg'});// 跳转登录
                 } else {
                     this.$message({
                         message: '欢迎回来',
                         type: 'success'
                     });
+
+                    setCookie("id", data);
                 }
             },
             // 控制页面跳转

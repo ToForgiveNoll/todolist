@@ -26,7 +26,7 @@
 
 <script>
     import {ajax} from "../units/ajax";
-    import {getCookie, setCookie} from "../units/cookies";
+    import {setCookie} from "../units/cookies";
     import {keyChainCheck} from "../units/keyChainCheck";
 
     export default {
@@ -78,12 +78,13 @@
             // 初始化回调
             mountedCallback(data) {
                 this.loading = false;
-                if (data === "1") {
+                if (data !== "0") {
                     this.$message({
                         message: '欢迎回来',
                         type: 'success'
                     });
 
+                    setCookie("id", data);
                     this.$router.push({'name': 'Home', params: {key: 1}});// 跳转首页
                 }
             },
