@@ -37,7 +37,7 @@
                         </el-form-item>
 
                         <el-form-item>
-                            <el-button @click="addOption(form.multipleChoice)">新增题目</el-button>
+                            <el-button @click="addOption(form.multipleChoice)">新增选项</el-button>
                         </el-form-item>
 
                         <el-form-item label="正确答案">
@@ -57,7 +57,7 @@
                         </el-form-item>
 
                         <el-form-item>
-                            <el-button @click="addOption(form.multipleChoice)">新增题目</el-button>
+                            <el-button @click="addOption(form.multipleChoice)">新增选项</el-button>
                         </el-form-item>
 
                         <el-form-item label="正确答案">
@@ -134,7 +134,7 @@
                     case "多选题":
                     case "判断题":
                     case "简答题":
-                        if (this.form.name !== '' && this.form.subject !== '' && this.form.answer !== '') {
+                        if (this.form.type !== '' && this.form.name !== '' && this.form.subject !== '' && this.form.answer !== '') {
                             this.$message("cg");
                         } else {
                             this.$message.error("请检查题目");
