@@ -8,7 +8,7 @@
             <div v-if="isType === 'enter'">
                 <el-form label-width="80px" label-position="left">
                     <el-form-item label="题型" prop="type">
-                        <el-select v-model="form.type" placeholder="请选择题型">
+                        <el-select @change="types(form.type)" v-model="form.type" placeholder="请选择题型">
                             <el-option label="单选题" value="单选题"></el-option>
                             <el-option label="多选题" value="多选题"></el-option>
                             <el-option label="判断题" value="判断题"></el-option>
@@ -30,7 +30,7 @@
                     <div v-if="form.type === '单选题'">
                         <el-form-item
                                 v-for="(option, index) in form.multipleChoice"
-                                :label="'选择' + index"
+                                :label="'选择' + (index+1)"
                         >
                             <el-input class="input" v-model="option.value"></el-input>
                             <el-button @click.prevent="removeOption(option,form.multipleChoice)">删除</el-button>
@@ -42,8 +42,50 @@
 
                         <el-form-item label="正确答案">
                             <el-radio-group v-model="form.answer">
-                                <el-radio v-for="(option, index) in form.multipleChoice" :label="index"></el-radio>
+                                <el-radio v-for="(option, index) in form.multipleChoice" :label="index+1"></el-radio>
                             </el-radio-group>
+                        </el-form-item>
+                    </div>
+
+                    <div v-if="form.type === '多选题'">
+                        <el-form-item
+                                v-for="(option, index) in form.multipleChoice"
+                                :label="'选择' + (index+1)"
+                        >
+                            <el-input class="input" v-model="option.value"></el-input>
+                            <el-button @click.prevent="removeOption(option,form.multipleChoice)">删除</el-button>
+                        </el-form-item>
+
+                        <el-form-item>
+                            <el-button @click="addOption(form.multipleChoice)">新增题目</el-button>
+                        </el-form-item>
+
+                        <el-form-item label="正确答案">
+                            <el-checkbox-group v-model="form.answer">
+                                <el-checkbox v-for="(option, index) in form.multipleChoice"
+                                             :label="index+1"></el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                    </div>
+
+                    <div v-if="form.type === '判断题'">
+                        <el-form-item label="正确答案">
+                            <el-radio-group v-model="form.answer">
+                                <el-radio label="对"></el-radio>
+                                <el-radio label="错"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+
+                        <el-form-item label="修正" v-if="form.answer === '错'">
+                            <el-radio-group v-model="form.answer">
+                                <el-input class="input" v-model="form.amend"></el-input>
+                            </el-radio-group>
+                        </el-form-item>
+                    </div>
+
+                    <div v-if="form.type === '简答题'">
+                        <el-form-item label="正确答案">
+                            <el-input type="textarea" v-model="form.answer"></el-input>
                         </el-form-item>
                     </div>
 
@@ -73,7 +115,8 @@
                     subject: '',
                     type: '',
                     multipleChoice: [],
-                    answer: ''
+                    answer: '' || [],
+                    amend: ''
                 }
             }
         },
@@ -88,6 +131,9 @@
             onSubmit() {
                 switch (this.form.type) {
                     case "单选题":
+                    case "多选题":
+                    case "判断题":
+                    case "简答题":
                         if (this.form.name !== '' && this.form.subject !== '' && this.form.answer !== '') {
                             this.$message("cg");
                         } else {
@@ -109,6 +155,20 @@
                 if (index !== -1) {
                     data.splice(index, 1)
                 }
+            },
+            // 检查创建题目时题型变化
+            types(data) {
+                if (data === "多选题") {
+                    this.form.answer = [];
+                } else {
+                    this.form.answer = '';
+                }
+
+                // 清空值
+                this.form.name = '';
+                this.form.subject = '';
+                this.form.multipleChoice = [];
+                this.form.amend = '';
             }
         },
         mounted() {
